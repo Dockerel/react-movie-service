@@ -3,17 +3,20 @@ import { useState, useEffect } from "react";
 function App() {
   const [loading, setLoading] = useState(true);
   const [coins, setCoins] = useState([]);
-  const [dollar, setDollars] = useState(1);
-  const [price, setPrice] = useState(1);
+  const [symbol, setSymbol] = useState("");
+  const [coinPrice, setCoinPrice] = useState(0);
 
   const onCoinChange = (event) => {
-    console.log(event.target.value);
     const coinInfoArray = event.target.value.split(" ");
-    setPrice(Number(coinInfoArray[coinInfoArray.length - 2]));
-  };
-
-  const onDollarChange = (event) => {
-    setDollars(event.target.value);
+    setSymbol(
+      coinInfoArray[coinInfoArray.length - 3].substr(
+        1,
+        coinInfoArray[coinInfoArray.length - 3].length - 3
+      )
+    );
+    setCoinPrice(Number(coinInfoArray[coinInfoArray.length - 2]));
+    console.log(symbol);
+    console.log(coinPrice);
   };
 
   useEffect(() => {
@@ -40,9 +43,6 @@ function App() {
           ))}
         </select>
       )}
-      <br />
-      <input type="number" value={dollar} onChange={onDollarChange}></input>
-      <h2>{dollar / price}</h2>
     </div>
   );
 }
