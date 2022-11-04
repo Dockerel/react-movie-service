@@ -21,7 +21,7 @@ function Detail() {
   }, []);
   return (
     <div>
-      <a href="/">
+      <a href="/react-movie-service">
         <span>Home</span>
       </a>
       {loading ? (
